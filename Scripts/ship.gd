@@ -12,7 +12,7 @@ var dir := Vector2(0,0)
 var current_speed: int = 0
 var acc:int = 200
 
-const MAX_SPEED: int = 300
+const MAX_SPEED: int = 200
 
 func _ready() -> void:
 	#sprite.set_texture(slightly_damaged)
@@ -24,12 +24,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	movement(delta)
-	if desired_dir == Vector2(0,0):
-		current_speed = current_speed - acc * delta
 
 func movement(delta):
-	velocity = desired_dir * current_speed
-	current_speed = current_speed + acc * delta
-	current_speed = clamp(current_speed, 0, MAX_SPEED)
-	print(current_speed)
+	velocity = desired_dir * MAX_SPEED
+	
 	move_and_slide()
