@@ -81,7 +81,7 @@ rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_rtd4v")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.435314
+frame_progress = 0.815262
 
 [node name="BaseEngine" type="Sprite2D" parent="."]
 rotation = 1.5708
