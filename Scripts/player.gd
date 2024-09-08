@@ -30,9 +30,7 @@ func _physics_process(delta: float) -> void:
 	direction.x = clamp(direction.x, -MAX_SPEED, MAX_SPEED)
 	direction.y = clamp(direction.y, -MAX_SPEED, MAX_SPEED)
 	
-	
 	velocity = direction 
-	print(velocity)
 	
 	move_and_slide()
 

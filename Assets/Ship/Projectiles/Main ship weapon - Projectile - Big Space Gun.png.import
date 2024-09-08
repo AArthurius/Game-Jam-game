@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chsisa5ok5kbi"
-path="res://.godot/imported/Weapons - Auto Cannon.png-5c44bfd5563a0da1c6b2987d3b632c03.ctex"
+uid="uid://c0cuh3asfvgnp"
+path="res://.godot/imported/Main ship weapon - Projectile - Big Space Gun.png-73de103cc4bc7a57e71c2af89705b21d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ship/Weapons (projectiles)/Weapons - Auto Cannon.png"
-dest_files=["res://.godot/imported/Weapons - Auto Cannon.png-5c44bfd5563a0da1c6b2987d3b632c03.ctex"]
+source_file="res://Assets/Ship/Projectiles/Main ship weapon - Projectile - Big Space Gun.png"
+dest_files=["res://.godot/imported/Main ship weapon - Projectile - Big Space Gun.png-73de103cc4bc7a57e71c2af89705b21d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8fc3autwdoel"
-path="res://.godot/imported/Main Ship - Weapons - Zapper.png-7507c2cc99a49c458c370d6c72a4a368.ctex"
+uid="uid://xkn35yxax2dp"
+path="res://.godot/imported/Main Ship - Auto Cannon 1-Sheet.png-9bfec553c9174c8f1bd8bbc50e8fce5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ship/Weapons (projectiles)/Main Ship - Weapons - Zapper.png"
-dest_files=["res://.godot/imported/Main Ship - Weapons - Zapper.png-7507c2cc99a49c458c370d6c72a4a368.ctex"]
+source_file="res://Assets/Ship/Weapons/Main Ship - Auto Cannon 1-Sheet.png"
+dest_files=["res://.godot/imported/Main Ship - Auto Cannon 1-Sheet.png-9bfec553c9174c8f1bd8bbc50e8fce5f.ctex"]
 
 [params]
 
