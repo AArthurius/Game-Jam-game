@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	direction.y = clamp(direction.y, -MAX_SPEED, MAX_SPEED)
 	
 	velocity = direction 
-	
 	move_and_slide()
 
 func friction(delta):

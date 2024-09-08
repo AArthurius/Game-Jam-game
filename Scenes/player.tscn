@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b7eae5hkbacoq" path="res://Assets/Ship/Engine Effects/Base Engine - Powering.png" id="3_1od03"]
 [ext_resource type="Texture2D" uid="uid://2670v0c05b7d" path="res://Assets/Ship/Engines/Engines - Base Engine.png" id="4_3rmb7"]
 [ext_resource type="Texture2D" uid="uid://xkn35yxax2dp" path="res://Assets/Ship/Weapons/Main Ship - Auto Cannon 1-Sheet.png" id="5_1y74t"]
+[ext_resource type="Script" path="res://Scripts/autocannonManager.gd" id="6_3l6xn"]
 [ext_resource type="Texture2D" uid="uid://b84tqb21s41vg" path="res://Assets/Ship/Weapons/Main Ship - Auto Cannon 2-Sheet.png" id="6_ha0yc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gukxd"]
@@ -142,10 +143,6 @@ animations = [{
 atlas = ExtResource("6_ha0yc")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57ko2"]
-atlas = ExtResource("6_ha0yc")
-region = Rect2(48, 0, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2f5n"]
 atlas = ExtResource("6_ha0yc")
 region = Rect2(96, 0, 48, 48)
@@ -181,9 +178,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_fvapb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_57ko2")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_e2f5n")
 }, {
 "duration": 1.0,
@@ -197,8 +191,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nmt13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvapb")
 }],
-"loop": true,
+"loop": false,
 "name": &"shooting",
 "speed": 10.0
 }]
@@ -226,6 +223,7 @@ texture = ExtResource("4_3rmb7")
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="Autocannon" type="Node2D" parent="Weapons"]
+script = ExtResource("6_3l6xn")
 
 [node name="Autocannon1" type="AnimatedSprite2D" parent="Weapons/Autocannon"]
 rotation = 1.5708
@@ -239,9 +237,8 @@ position = Vector2(-9, -12)
 [node name="Autocannon2" type="AnimatedSprite2D" parent="Weapons/Autocannon"]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_d3w0u")
-animation = &"idle"
+animation = &"shooting"
 autoplay = "idle"
-frame_progress = 0.980401
 
 [node name="Cano1" type="Marker2D" parent="Weapons/Autocannon/Autocannon2"]
 position = Vector2(9, -12)
@@ -249,3 +246,6 @@ position = Vector2(9, -12)
 [node name="Hull" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("1_0bigh")
+
+[connection signal="animation_finished" from="Weapons/Autocannon/Autocannon1" to="Weapons/Autocannon" method="_on_autocannon_1_animation_finished"]
+[connection signal="animation_finished" from="Weapons/Autocannon/Autocannon2" to="Weapons/Autocannon" method="_on_autocannon_2_animation_finished"]
