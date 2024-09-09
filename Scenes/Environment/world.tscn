@@ -62,7 +62,7 @@ shape = SubResource("WorldBoundaryShape2D_f7p7e")
 script = ExtResource("3_rl27i")
 
 [node name="Time to spawn" type="Timer" parent="Environment/Spawner manager"]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="top" parent="Environment/Spawner manager" instance=ExtResource("4_21wik")]
