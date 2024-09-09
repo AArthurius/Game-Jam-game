@@ -36,7 +36,7 @@ func shoot():
 	scout_bullet.spawn_pos = bullet_spawn.global_position
 	scout_bullet.spawn_rot = scout.rotation
 	scout_bullet.dir = scout.player_direction
-	get_tree().root.get_child(0).get_node("Projectiles").add_child(scout_bullet)
+	get_tree().root.get_child(0).get_node("Environment").get_node("Projectiles").add_child(scout_bullet)
 
 func shooting_anim():
 	if dead:

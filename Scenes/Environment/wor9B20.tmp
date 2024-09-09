@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=4 uid="uid://bltihrexc66te"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/world.gd" id="1_2hxu4"]
+[ext_resource type="Texture2D" uid="uid://doxmx3qnmnieu" path="res://Assets/Debug/grid_orange_512x512.png" id="2_rhk88"]
+[ext_resource type="Script" path="res://Scripts/Environment/enemy_spawner.gd" id="3_gyjh0"]
+[ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
+[ext_resource type="PackedScene" uid="uid://d04xci5kohwae" path="res://Scenes/Entities/Enemies/scout.tscn" id="5_pwdvm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_subij"]
+texture = ExtResource("2_rhk88")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xra5y"]
+tile_size = Vector2i(512, 512)
+sources/0 = SubResource("TileSetAtlasSource_subij")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f7p7e"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_2hxu4")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Environment"]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD8/wAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD8////AAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD9////AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xra5y")
+
+[node name="Boundaries" type="StaticBody2D" parent="Environment"]
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(0, 1064)
+shape = SubResource("WorldBoundaryShape2D_f7p7e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(0, -1064)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_f7p7e")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(2088, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_f7p7e")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(-2088, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_f7p7e")
+
+[node name="Projectiles" type="Node2D" parent="Environment"]
+
+[node name="Enemy Spawner" type="Marker2D" parent="Environment"]
+script = ExtResource("3_gyjh0")
+
+[node name="Player" parent="." instance=ExtResource("4_u2x8y")]
+unique_name_in_owner = true
+z_index = 5
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+limit_left = -2048
+limit_top = -1024
+limit_right = 2048
+limit_bottom = 1024
+limit_smoothed = true
+
+[node name="Scout" parent="." instance=ExtResource("5_pwdvm")]
+position = Vector2(408, -208)
+
+[node name="Scout2" parent="." instance=ExtResource("5_pwdvm")]
+position = Vector2(-560, 304)
+
+[connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
+
+[editable path="Player"]

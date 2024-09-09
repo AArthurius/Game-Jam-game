@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2ifot5nx5dei"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Projectiles/bullet.gd" id="1_ob5oq"]
-[ext_resource type="Texture2D" uid="uid://3pt842voayvv" path="res://Assets/Enemies/Weapon Effects - Projectiles/Nautolan - Spinning Bullet.png" id="2_qt5h7"]
+[ext_resource type="Texture2D" uid="uid://3pt842voayvv" path="res://Assets/Graphics/Enemies/Weapon Effects - Projectiles/Nautolan - Spinning Bullet.png" id="2_qt5h7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3iroa"]
 atlas = ExtResource("2_qt5h7")

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var broken = preload("res://Assets/Ship/Hull/Hull - Broken.png")
+var broken = preload("res://Assets/Graphics/Ship/Hull/Hull - Broken.png")
 
 @onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
