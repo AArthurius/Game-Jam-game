@@ -8,6 +8,7 @@ var broken = preload("res://Assets/Ship/Hull/Hull - Broken.png")
 @onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 
 const MAX_SPEED = 350
+
 var acc = 300
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)

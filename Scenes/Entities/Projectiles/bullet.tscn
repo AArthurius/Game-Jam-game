@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://capton2pghowa"]
 
-[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_r606m"]
+[ext_resource type="Script" path="res://Scripts/Entities/Projectiles/bullet.gd" id="1_r606m"]
 [ext_resource type="Texture2D" uid="uid://dw6akeow0cqvg" path="res://Assets/Ship/Projectiles/Main ship weapon - Projectile - Auto cannon bullet.png" id="2_4ymjp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jndym"]

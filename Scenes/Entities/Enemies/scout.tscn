@@ -1,10 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://d04xci5kohwae"]
+[gd_scene load_steps=35 format=3 uid="uid://d04xci5kohwae"]
 
-[ext_resource type="Script" path="res://Scripts/scout.gd" id="1_bqopp"]
+[ext_resource type="Script" path="res://Scripts/Entities/Enemies/scout.gd" id="1_bqopp"]
 [ext_resource type="Texture2D" uid="uid://dn3qieoc5rnie" path="res://Assets/Enemies/Engine Effects/Nautolan Ship - Scout - Engine Effect.png" id="1_ms3ck"]
 [ext_resource type="Texture2D" uid="uid://c2c8wlbnsgqse" path="res://Assets/Enemies/Destruction/Nautolan Ship - Scout.png" id="2_y11s6"]
 [ext_resource type="Texture2D" uid="uid://bxin6ishiwi8i" path="res://Assets/Enemies/Designs - Base/Nautolan Ship - Scout - Base.png" id="3_odtr6"]
 [ext_resource type="Texture2D" uid="uid://dbgr8mcr7ume4" path="res://Assets/Enemies/Weapons/Nautolan Ship - Scout - Weapons.png" id="4_0p1hn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0nds"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6n153"]
 radius = 12.0
@@ -72,6 +74,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g24wb"]
@@ -212,9 +222,19 @@ animations = [{
 }]
 
 [node name="Scout" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_bqopp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_t0nds")
+
+[node name="death component" type="Node" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6n153")
 
@@ -223,13 +243,10 @@ rotation = 1.5708
 
 [node name="engineEffects" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_n33ax")
-animation = &"idle"
+animation = &"off"
 autoplay = "idle"
-frame_progress = 0.913016
 
 [node name="hull" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_2ynut")
-animation = &"shooting"
+animation = &"destruction"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
