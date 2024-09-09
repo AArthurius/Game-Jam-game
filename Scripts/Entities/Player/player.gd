@@ -1,20 +1,22 @@
 extends CharacterBody2D
 
-var full_health = preload("res://Assets/Ship/Hull/Hull - Broken.png")
-var slightly_damaged: CompressedTexture2D = preload("res://Assets/Ship/Hull/Hull - Slight Damage.png")
-var very_damaged = preload("res://Assets/Ship/Hull/Hull - Very damage.png")
 var broken = preload("res://Assets/Ship/Hull/Hull - Broken.png")
 
 @onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
+@onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
+@onready var hull: Sprite2D = $Sprites/Hull
 
 const MAX_SPEED = 350
 
 var acc = 300
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)
-
+var dead:bool = false
 
 func _process(delta: float) -> void:
+	if dead:
+		return
+	
 	input_dir = Input.get_vector("left","right","up", "down")
 	look_at(get_global_mouse_position())
 	
@@ -24,6 +26,10 @@ func _process(delta: float) -> void:
 		engine.play("idle")
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		dead_movement()
+		return
+	
 	if input_dir:
 		direction += input_dir * acc * delta
 	else:
@@ -59,3 +65,12 @@ func friction(delta):
 		friction_y = acc * delta
 		vel_y += friction_y
 		direction.y = min(vel_y, 0)
+
+func kill():
+	dead = true
+	engine_effects.play("off")
+	hull.texture = broken
+	engine_effects.play("death")
+
+func dead_movement():
+	move_and_slide()

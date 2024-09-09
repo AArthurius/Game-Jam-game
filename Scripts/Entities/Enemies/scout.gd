@@ -11,6 +11,7 @@ var direction: Vector2
 const ACC = 150
 const MAX_SPEED = 200
 
+
 func _process(delta: float) -> void:
 	if dead:
 		return
@@ -22,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	if dead:
 		velocity = Vector2(0, 0)
 		return
-	
 	
 	handle_movement(delta)
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://cnkat3xpqi7jp"]
+[gd_scene load_steps=33 format=3 uid="uid://cnkat3xpqi7jp"]
 
 [ext_resource type="Texture2D" uid="uid://bghcxfv35bkm4" path="res://Assets/Ship/Hull/Hull - Full Health.png" id="1_0bigh"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/player.gd" id="1_67w6s"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Weapons/shooting.gd" id="2_33pgj"]
 [ext_resource type="Texture2D" uid="uid://jno7ucidrbrh" path="res://Assets/Ship/Engine Effects/Base Engine - Idle.png" id="2_45pm1"]
 [ext_resource type="Texture2D" uid="uid://b7eae5hkbacoq" path="res://Assets/Ship/Engine Effects/Base Engine - Powering.png" id="3_1od03"]
 [ext_resource type="Texture2D" uid="uid://2670v0c05b7d" path="res://Assets/Ship/Engines/Engines - Base Engine.png" id="4_3rmb7"]
@@ -164,6 +163,14 @@ region = Rect2(144, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_puy8w")
 }, {
 "duration": 1.0,
@@ -197,9 +204,6 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 13
 script = ExtResource("1_67w6s")
-
-[node name="Shooting" type="Node" parent="."]
-script = ExtResource("2_33pgj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gukxd")
@@ -235,9 +239,8 @@ texture = ExtResource("4_3rmb7")
 
 [node name="BaseEngineEffects" type="AnimatedSprite2D" parent="Sprites/BaseEngine"]
 sprite_frames = SubResource("SpriteFrames_rtd4v")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.763919
 
 [node name="Hull" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("1_0bigh")

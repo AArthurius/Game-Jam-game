@@ -10,12 +10,22 @@ var switch:bool = false
 
 var can_shoot_1: bool = true
 var can_shoot_2: bool = true
+var dead:bool = false
 
 signal spawn_bullet(pos, aim_direction, bullet_rotation)
 
+func _process(delta: float) -> void:
+	if player.dead == true:
+		dead = true
+		return
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 #maybe put a cooldown on the gun itself, so you can't shoot so fast, instead of tying it to animation
 func shoot():
+	if dead:
+		return
 	var player_direction = (get_global_mouse_position() - global_position).normalized()
 	
 	if can_shoot_1 and !switch:

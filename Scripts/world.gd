@@ -1,6 +1,7 @@
 extends Node2D
 
-var bullet_scene: PackedScene = preload("res://Scenes/Entities/Projectiles/bullet.tscn")
+const CANNON_BULLET = preload("res://Scenes/Entities/Projectiles/player/cannon_bullet.tscn")
+const ROUND_BULLET = preload("res://Scenes/Entities/Projectiles/enemies/round_bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_autocannon_spawn_bullet(pos: Variant, aim_direction: Variant, bullet_rotation) -> void:
-	var bullet = bullet_scene.instantiate() as CharacterBody2D
+	var bullet = CANNON_BULLET.instantiate() as CharacterBody2D
 	bullet.spawn_pos = pos
 	bullet.spawn_rot = bullet_rotation
 	bullet.dir = aim_direction
