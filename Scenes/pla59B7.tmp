@@ -201,7 +201,6 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 13
 script = ExtResource("1_67w6s")
 
 [node name="Shooting" type="Node" parent="."]
@@ -232,7 +231,7 @@ sprite_frames = SubResource("SpriteFrames_2008f")
 animation = &"shooting"
 autoplay = "idle"
 
-[node name="Barrel1" type="Marker2D" parent="Weapons/Autocannon/Autocannon1"]
+[node name="Cano1" type="Marker2D" parent="Weapons/Autocannon/Autocannon1"]
 position = Vector2(-9, -12)
 
 [node name="Autocannon2" type="AnimatedSprite2D" parent="Weapons/Autocannon"]
@@ -241,7 +240,7 @@ sprite_frames = SubResource("SpriteFrames_d3w0u")
 animation = &"shooting"
 autoplay = "idle"
 
-[node name="Barrel2" type="Marker2D" parent="Weapons/Autocannon/Autocannon2"]
+[node name="Cano1" type="Marker2D" parent="Weapons/Autocannon/Autocannon2"]
 position = Vector2(9, -12)
 
 [node name="Hull" type="Sprite2D" parent="."]

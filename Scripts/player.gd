@@ -12,6 +12,7 @@ var acc = 300
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)
 
+
 func _process(delta: float) -> void:
 	input_dir = Input.get_vector("left","right","up", "down")
 	look_at(get_global_mouse_position())
