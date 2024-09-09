@@ -31,6 +31,7 @@ func kill():
 	hull.play("death")
 	collision_layer = 0
 	collision_mask = 0
+	get_tree().root.get_child(0).add_score(5)
 
 func _on_hull_animation_finished() -> void:
 	if $Sprites/hull.animation == "death":

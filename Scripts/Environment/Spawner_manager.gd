@@ -12,6 +12,12 @@ var bottom_available:bool = true
 var left_available:bool = true
 var right_available:bool = true
 
+func _ready() -> void:
+	spawn_enemy("scout")
+	spawn_enemy("scout")
+	spawn_enemy("scout")
+	spawn_enemy("scout")
+
 func _process(delta: float) -> void:
 	if player in top.get_overlapping_bodies():
 		top_available = false

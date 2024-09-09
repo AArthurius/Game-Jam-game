@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bltihrexc66te"]
+[gd_scene load_steps=12 format=4 uid="uid://bltihrexc66te"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/world.gd" id="1_2hxu4"]
 [ext_resource type="Texture2D" uid="uid://doxmx3qnmnieu" path="res://Assets/Debug/grid_orange_512x512.png" id="2_rhk88"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Environment/Spawner_manager.gd" id="3_rl27i"]
 [ext_resource type="PackedScene" uid="uid://difb52ow47vdi" path="res://Scenes/Environment/spawn_area.tscn" id="4_21wik"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
+[ext_resource type="PackedScene" uid="uid://c5021nfdkytl4" path="res://Scenes/ui.tscn" id="7_ye1wh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_subij"]
 texture = ExtResource("2_rhk88")
@@ -94,7 +95,11 @@ limit_right = 2048
 limit_bottom = 1024
 limit_smoothed = true
 
+[node name="UI" parent="." instance=ExtResource("7_ye1wh")]
+
+[connection signal="update_score" from="." to="UI/Game UI" method="_on_world_update_score"]
 [connection signal="timeout" from="Environment/Spawner manager/Time to spawn" to="Environment/Spawner manager" method="_on_timer_to_spawn_timeout"]
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
 
 [editable path="Player"]
+[editable path="UI"]
