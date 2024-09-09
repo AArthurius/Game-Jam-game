@@ -5,7 +5,7 @@ var slightly_damaged: CompressedTexture2D = preload("res://Assets/Ship/Hull/Hull
 var very_damaged = preload("res://Assets/Ship/Hull/Hull - Very damage.png")
 var broken = preload("res://Assets/Ship/Hull/Hull - Broken.png")
 
-@onready var engine: AnimatedSprite2D = $BaseEngineEffects
+@onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 
 const MAX_SPEED = 350
 var acc = 300

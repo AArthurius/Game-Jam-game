@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bltihrexc66te"]
+[gd_scene load_steps=4 format=3 uid="uid://bltihrexc66te"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ouu1o"]
 [ext_resource type="PackedScene" uid="uid://b6eipfn5frl50" path="res://Scenes/player.tscn" id="1_tl25v"]
+[ext_resource type="PackedScene" uid="uid://d04xci5kohwae" path="res://Scenes/scout.tscn" id="3_jyq63"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ouu1o")
@@ -10,8 +11,12 @@ script = ExtResource("1_ouu1o")
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Ship" parent="." instance=ExtResource("1_tl25v")]
+[node name="Player" parent="." instance=ExtResource("1_tl25v")]
+unique_name_in_owner = true
 
-[connection signal="spawn_bullet" from="Ship/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
+[node name="Scout" parent="." instance=ExtResource("3_jyq63")]
+position = Vector2(103, 23)
 
-[editable path="Ship"]
+[connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
+
+[editable path="Player"]

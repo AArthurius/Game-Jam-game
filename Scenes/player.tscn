@@ -12,68 +12,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gukxd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_puy8w"]
-atlas = ExtResource("2_45pm1")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7kgwi"]
-atlas = ExtResource("2_45pm1")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a81vd"]
-atlas = ExtResource("2_45pm1")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ih4v1"]
-atlas = ExtResource("3_1od03")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xa5c"]
-atlas = ExtResource("3_1od03")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cayml"]
-atlas = ExtResource("3_1od03")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3t15q"]
-atlas = ExtResource("3_1od03")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rtd4v"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_puy8w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7kgwi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a81vd")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ih4v1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8xa5c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cayml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3t15q")
-}],
-"loop": true,
-"name": &"powering",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cjkw"]
 atlas = ExtResource("5_1y74t")
 region = Rect2(0, 0, 48, 48)
@@ -200,6 +138,68 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_puy8w"]
+atlas = ExtResource("2_45pm1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kgwi"]
+atlas = ExtResource("2_45pm1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a81vd"]
+atlas = ExtResource("2_45pm1")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih4v1"]
+atlas = ExtResource("3_1od03")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xa5c"]
+atlas = ExtResource("3_1od03")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cayml"]
+atlas = ExtResource("3_1od03")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t15q"]
+atlas = ExtResource("3_1od03")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtd4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puy8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kgwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a81vd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih4v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xa5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cayml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t15q")
+}],
+"loop": true,
+"name": &"powering",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 13
 script = ExtResource("1_67w6s")
@@ -209,17 +209,6 @@ script = ExtResource("2_33pgj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gukxd")
-
-[node name="BaseEngineEffects" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_rtd4v")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.763919
-
-[node name="BaseEngine" type="Sprite2D" parent="."]
-rotation = 1.5708
-texture = ExtResource("4_3rmb7")
 
 [node name="Weapons" type="Node2D" parent="."]
 
@@ -244,8 +233,19 @@ autoplay = "idle"
 [node name="Barrel2" type="Marker2D" parent="Weapons/Autocannon/Autocannon2"]
 position = Vector2(9, -12)
 
-[node name="Hull" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
 rotation = 1.5708
+
+[node name="BaseEngine" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("4_3rmb7")
+
+[node name="BaseEngineEffects" type="AnimatedSprite2D" parent="Sprites/BaseEngine"]
+sprite_frames = SubResource("SpriteFrames_rtd4v")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.763919
+
+[node name="Hull" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("1_0bigh")
 
 [connection signal="animation_finished" from="Weapons/Autocannon/Autocannon1" to="Weapons/Autocannon" method="_on_autocannon_1_animation_finished"]
