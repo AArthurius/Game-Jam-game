@@ -68,7 +68,7 @@ func friction(delta):
 
 func kill():
 	dead = true
-	engine_effects.play("off")
+	engine_effects.play("death")
 	hull.texture = broken
 	engine_effects.play("death")
 

@@ -12,7 +12,6 @@ var bottom_available:bool = true
 var left_available:bool = true
 var right_available:bool = true
 
-
 func _process(delta: float) -> void:
 	if player in top.get_overlapping_bodies():
 		top_available = false
@@ -32,8 +31,29 @@ func _process(delta: float) -> void:
 		right_available = true
 
 func _on_timer_to_spawn_timeout() -> void:
-	spawn_scout()
+	spawn_enemy("scout")
 
-func spawn_scout():
+func spawn_enemy(enemy):
 	var where_spawn:int = randi_range(1, 4)
 	
+	match where_spawn:
+		1:
+			if top_available:
+				top.spawn(enemy)
+			else:
+				spawn_enemy(enemy)
+		2:
+			if bottom_available:
+				bottom.spawn(enemy)
+			else:
+				spawn_enemy(enemy)
+		3:
+			if left_available:
+				left.spawn(enemy)
+			else:
+				spawn_enemy(enemy)
+		4:
+			if right_available:
+				right.spawn(enemy)
+			else:
+				spawn_enemy(enemy)
