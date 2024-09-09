@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://bltihrexc66te"]
+[gd_scene load_steps=11 format=4 uid="uid://bltihrexc66te"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/world.gd" id="1_2hxu4"]
 [ext_resource type="Texture2D" uid="uid://doxmx3qnmnieu" path="res://Assets/Debug/grid_orange_512x512.png" id="2_rhk88"]
-[ext_resource type="PackedScene" uid="uid://btc52dkjuie7l" path="res://Scenes/Environment/enemy_spawner.tscn" id="3_cxqv5"]
+[ext_resource type="Script" path="res://Scripts/Environment/Spawner_manager.gd" id="3_rl27i"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
 [ext_resource type="PackedScene" uid="uid://d04xci5kohwae" path="res://Scenes/Entities/Enemies/scout.tscn" id="5_pwdvm"]
 
@@ -16,6 +16,12 @@ tile_size = Vector2i(512, 512)
 sources/0 = SubResource("TileSetAtlasSource_subij")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f7p7e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xke5d"]
+size = Vector2(4209, 312)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlj8u"]
+size = Vector2(312, 2160)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_2hxu4")
@@ -51,66 +57,34 @@ shape = SubResource("WorldBoundaryShape2D_f7p7e")
 
 [node name="Projectiles" type="Node2D" parent="Environment"]
 
-[node name="Enemy Spawners" type="Node2D" parent="Environment"]
+[node name="Spawner manager" type="Node2D" parent="Environment"]
+script = ExtResource("3_rl27i")
 
-[node name="right1" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(2104, -1024)
-rotation = -1.5708
+[node name="Time to spawn" type="Timer" parent="Environment/Spawner manager"]
 
-[node name="right2" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(2104, 0)
-rotation = -1.5708
+[node name="bottom" type="Area2D" parent="Environment/Spawner manager"]
+position = Vector2(0, 924)
 
-[node name="right3" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(2104, 1024)
-rotation = -1.5708
+[node name="bottom" type="CollisionShape2D" parent="Environment/Spawner manager/bottom"]
+shape = SubResource("RectangleShape2D_xke5d")
 
-[node name="left1" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-2104, 0)
-rotation = 1.5708
+[node name="top" type="Area2D" parent="Environment/Spawner manager"]
+position = Vector2(0, -924)
 
-[node name="left2" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-2104, 1024)
-rotation = 1.5708
+[node name="top" type="CollisionShape2D" parent="Environment/Spawner manager/top"]
+shape = SubResource("RectangleShape2D_xke5d")
 
-[node name="left3" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-2104, -1024)
-rotation = 1.5708
+[node name="right" type="Area2D" parent="Environment/Spawner manager"]
+position = Vector2(1948, 0)
 
-[node name="bottom1" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-2048, 1080)
+[node name="right" type="CollisionShape2D" parent="Environment/Spawner manager/right"]
+shape = SubResource("RectangleShape2D_wlj8u")
 
-[node name="bottom2" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-1024, 1080)
+[node name="left" type="Area2D" parent="Environment/Spawner manager"]
+position = Vector2(-1948, 0)
 
-[node name="bottom3" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(0, 1080)
-
-[node name="bottom4" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(1024, 1080)
-
-[node name="bottom5" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(2048, 1080)
-
-[node name="top1" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-2048, -1080)
-rotation = 3.14159
-
-[node name="top2" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(-1024, -1080)
-rotation = 3.14159
-
-[node name="top3" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(0, -1080)
-rotation = 3.14159
-
-[node name="top4" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(1024, -1080)
-rotation = 3.14159
-
-[node name="top5" parent="Environment/Enemy Spawners" instance=ExtResource("3_cxqv5")]
-position = Vector2(2048, -1080)
-rotation = 3.14159
+[node name="left" type="CollisionShape2D" parent="Environment/Spawner manager/left"]
+shape = SubResource("RectangleShape2D_wlj8u")
 
 [node name="Player" parent="." instance=ExtResource("4_u2x8y")]
 unique_name_in_owner = true
@@ -130,6 +104,7 @@ position = Vector2(408, -208)
 [node name="Scout2" parent="." instance=ExtResource("5_pwdvm")]
 position = Vector2(-560, 304)
 
+[connection signal="timeout" from="Environment/Spawner manager/Time to spawn" to="Environment/Spawner manager" method="_on_timer_to_spawn_timeout"]
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
 
 [editable path="Player"]
