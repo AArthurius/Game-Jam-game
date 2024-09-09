@@ -17,5 +17,4 @@ func _on_autocannon_spawn_bullet(pos: Variant, aim_direction: Variant, bullet_ro
 	bullet.spawn_pos = pos
 	bullet.spawn_rot = bullet_rotation
 	bullet.dir = aim_direction
-	print(aim_direction)
 	$Projectiles.add_child(bullet)

@@ -52,9 +52,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3cjkw")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_hgkpo")
 }, {
 "duration": 1.0,
@@ -112,9 +109,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvapb")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e2f5n")
 }, {

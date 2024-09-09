@@ -17,6 +17,15 @@ position = Vector2(103, 23)
 [node name="Player" parent="." instance=ExtResource("1_tl25v")]
 unique_name_in_owner = true
 
+[node name="Scout2" parent="." instance=ExtResource("3_jyq63")]
+position = Vector2(56, -50)
+
+[node name="Scout3" parent="." instance=ExtResource("3_jyq63")]
+position = Vector2(-72, -45)
+
+[node name="Scout4" parent="." instance=ExtResource("3_jyq63")]
+position = Vector2(-107, 36)
+
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
 
 [editable path="Player"]

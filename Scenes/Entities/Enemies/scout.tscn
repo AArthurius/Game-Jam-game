@@ -183,7 +183,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_t83d0")
 }],
 "loop": false,
-"name": &"destruction",
+"name": &"death",
 "speed": 10.0
 }, {
 "frames": [{
@@ -223,16 +223,16 @@ animations = [{
 
 [node name="Scout" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_bqopp")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_t0nds")
 
-[node name="death component" type="Node" parent="."]
-
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
@@ -248,5 +248,7 @@ autoplay = "idle"
 
 [node name="hull" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_2ynut")
-animation = &"destruction"
+animation = &"death"
 autoplay = "idle"
+
+[connection signal="animation_finished" from="Sprites/hull" to="." method="_on_hull_animation_finished"]

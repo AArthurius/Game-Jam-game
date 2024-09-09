@@ -13,6 +13,8 @@ var can_shoot_2: bool = true
 
 signal spawn_bullet(pos, aim_direction, bullet_rotation)
 
+
+#maybe put a cooldown on the gun itself, so you can't shoot so fast, instead of tying it to animation
 func shoot():
 	var player_direction = (get_global_mouse_position() - global_position).normalized()
 	
