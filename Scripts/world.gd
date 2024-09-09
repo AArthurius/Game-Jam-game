@@ -12,7 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_autocannon_spawn_bullet(pos: Variant, aim_direction: Variant, bullet_rotation) -> void:
 	var bullet = CANNON_BULLET.instantiate() as CharacterBody2D
 	bullet.spawn_pos = pos

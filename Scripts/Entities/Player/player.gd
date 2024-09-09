@@ -6,7 +6,7 @@ var broken = preload("res://Assets/Ship/Hull/Hull - Broken.png")
 @onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var hull: Sprite2D = $Sprites/Hull
 
-const MAX_SPEED = 350
+const MAX_SPEED = 300
 var acc = 350
 
 var input_dir: Vector2 = Vector2(0, 0)
@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	input_dir = Input.get_vector("left","right","up", "down")
 	look_at(get_global_mouse_position())
 	
-	if velocity.length() != 0:
+	if input_dir:
 		engine.play("powering")
 	else:
 		engine.play("idle")
