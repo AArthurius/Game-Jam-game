@@ -8,8 +8,8 @@ var dead:bool = false
 var player_direction: Vector2
 var direction: Vector2
 
-const ACC = 150
-const MAX_SPEED = 200
+const ACC = 500
+const MAX_SPEED = 150
 
 
 func _process(delta: float) -> void:

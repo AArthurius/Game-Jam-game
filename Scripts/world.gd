@@ -1,7 +1,7 @@
 extends Node2D
 
 const CANNON_BULLET = preload("res://Scenes/Entities/Projectiles/player/cannon_bullet.tscn")
-const ROUND_BULLET = preload("res://Scenes/Entities/Projectiles/enemies/round_bullet.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
