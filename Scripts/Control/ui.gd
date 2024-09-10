@@ -6,18 +6,11 @@ extends Control
 @onready var front_shield_timer: Timer = $"Front shield timer"
 @onready var front_shield_pb: TextureProgressBar = $"Front shield pb"
 
-var time_percentage:float
-
 var total_score:int = 0
 var enemies:int = 0
 
 func _process(delta: float) -> void:
 	enemy_number.text = "enemies: %d" % enemies
-	
-	if front_shield_timer.get_time_left() > 0:
-		time_percentage = (1 - front_shield_timer.get_time_left() / front_shield_timer.get_wait_time()) * 100
-	front_shield_pb.value = time_percentage
-	
 
 func update_score(score):
 	total_score += score
@@ -33,6 +26,13 @@ func _on_world_enemy_amount(amount: Variant) -> void:
 func _on_player_front_shield_timer_ui() -> void:
 	front_shield_pb.visible = true
 	front_shield_timer.start()
+	front_shield_pb.value = 0
+	tween_progress()
 
 func _on_front_shield_timer_timeout() -> void:
 	front_shield_pb.visible = false
+
+func tween_progress():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(front_shield_pb, "value",100 ,10)

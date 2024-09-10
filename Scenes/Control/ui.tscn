@@ -98,7 +98,6 @@ libraries = {
 }
 
 [node name="Front shield pb" type="TextureProgressBar" parent="Game UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
