@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player = get_tree().current_scene.get_node("Player")
 @onready var engine_effects: AnimatedSprite2D = $Sprites/engineEffects
 @onready var hull: AnimatedSprite2D = $Sprites/hull
+@onready var random_pickup: Node = $"Random Pickup"
 
 var dead:bool = false
 var player_direction: Vector2
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
 func kill():
 	if dead:
 		return
+	random_pickup.random_pickup()
 	dead = true
 	engine_effects.play("off")
 	hull.play("death")

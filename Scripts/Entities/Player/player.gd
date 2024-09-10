@@ -6,6 +6,10 @@ var broken = preload("res://Assets/Graphics/Ship/Hull/Hull - Broken.png")
 @onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var hull: Sprite2D = $Sprites/Hull
 @onready var shields_sprites: AnimatedSprite2D = $Sprites/Shields
+@onready var front_shield: CollisionShape2D = $"Front Shield/CollisionShape2D"
+@onready var front_shield_timer: Timer = $"Front Shield/Front shield timer"
+
+signal front_shield_timer_ui()
 
 var max_speed = 300
 var acc = 350
@@ -14,10 +18,13 @@ var direction: Vector2 = Vector2(0, 0)
 var dead:bool = false
 
 var has_basic_shield:bool = false
+var has_front_shield:bool = false
 
 func _process(delta: float) -> void:
 	if dead:
 		return
+	
+	print(front_shield_timer.wait_time)
 	
 	input_dir = Input.get_vector("left","right","up", "down")
 	look_at(get_global_mouse_position())
@@ -27,7 +34,7 @@ func _process(delta: float) -> void:
 	else:
 		engine.play("idle")
 	
-	shields()
+	shields_anim()
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -83,6 +90,32 @@ func kill():
 func dead_movement():
 	move_and_slide()
 
-func shields():
+func pickup(pickup: String, type:String):
+	if type == "shield":
+		disable_shields()
+		match pickup:
+			"basic shield":
+				has_basic_shield = true
+			"front shield":
+				front_shield_timer.start()
+				front_shield_timer_ui.emit()
+				has_front_shield = true
+
+func shields_anim():
 	if has_basic_shield:
 		shields_sprites.play("basic shield")
+	if has_front_shield:
+		shields_sprites.z_index = -1
+		front_shield.disabled = false
+		shields_sprites.play("front shield")
+	else:
+		front_shield.disabled = true
+		shields_sprites.z_index = 6
+
+func disable_shields():
+	has_basic_shield = false
+	has_front_shield = false
+	shields_sprites.play("no shield")
+
+func _on_front_shield_timer_timeout() -> void:
+	disable_shields()

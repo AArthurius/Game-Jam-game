@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dhqtmt1jrdgov"]
 
-[ext_resource type="Script" path="res://Scripts/Pickups/basic_shield_pickup.gd" id="1_6v55x"]
+[ext_resource type="Script" path="res://Scripts/Pickups/pickup.gd" id="1_6v55x"]
 [ext_resource type="Texture2D" uid="uid://20bvhxegnqvp" path="res://Assets/Graphics/Pickups/Shield Generators/Pickup Icon - Shield Generator - All around shield.png" id="2_g8og8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pbyp"]
@@ -121,6 +121,8 @@ radius = 18.0
 
 [node name="Basic shield pickup" type="Area2D"]
 script = ExtResource("1_6v55x")
+pickup = "basic shield"
+type = "shield"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8k00x")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://d04xci5kohwae"]
+[gd_scene load_steps=37 format=3 uid="uid://d04xci5kohwae"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Enemies/scout.gd" id="1_bqopp"]
 [ext_resource type="Texture2D" uid="uid://dn3qieoc5rnie" path="res://Assets/Graphics/Enemies/Engine Effects/Nautolan Ship - Scout - Engine Effect.png" id="1_ms3ck"]
 [ext_resource type="Script" path="res://Scripts/Entities/Enemies/enemy_shooting.gd" id="2_75scc"]
+[ext_resource type="Script" path="res://Scripts/Pickups/random_pickup.gd" id="2_g6w5e"]
 [ext_resource type="Texture2D" uid="uid://c2c8wlbnsgqse" path="res://Assets/Graphics/Enemies/Destruction/Nautolan Ship - Scout.png" id="2_y11s6"]
 [ext_resource type="Texture2D" uid="uid://bxin6ishiwi8i" path="res://Assets/Graphics/Enemies/Designs - Base/Nautolan Ship - Scout - Base.png" id="3_odtr6"]
 [ext_resource type="Texture2D" uid="uid://dbgr8mcr7ume4" path="res://Assets/Graphics/Enemies/Weapons/Nautolan Ship - Scout - Weapons.png" id="4_0p1hn"]
@@ -224,8 +225,11 @@ animations = [{
 
 [node name="Scout" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_bqopp")
+
+[node name="Random Pickup" type="Node" parent="."]
+script = ExtResource("2_g6w5e")
 
 [node name="Enemy shooting" type="Node" parent="."]
 script = ExtResource("2_75scc")
