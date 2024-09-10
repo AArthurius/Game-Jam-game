@@ -11,14 +11,15 @@ var top_available:bool = true
 var bottom_available:bool = true
 var left_available:bool = true
 var right_available:bool = true
-
-func _ready() -> void:
-	spawn_enemy("scout")
-	spawn_enemy("scout")
-	spawn_enemy("scout")
-	spawn_enemy("scout")
+var enemy_amount:int = 0
+var last_spawned:int = 1
 
 func _process(delta: float) -> void:
+	player_position()
+	if enemy_amount < 4:
+		spawn_enemy("scout")
+
+func player_position():
 	if player in top.get_overlapping_bodies():
 		top_available = false
 	else:
@@ -44,22 +45,29 @@ func spawn_enemy(enemy):
 	
 	match where_spawn:
 		1:
-			if top_available:
+			if top_available and last_spawned != 1:
 				top.spawn(enemy)
+				last_spawned = 1
 			else:
 				spawn_enemy(enemy)
 		2:
-			if bottom_available:
+			if bottom_available and last_spawned != 2:
 				bottom.spawn(enemy)
+				last_spawned = 2
 			else:
 				spawn_enemy(enemy)
 		3:
-			if left_available:
+			if left_available and last_spawned != 3:
 				left.spawn(enemy)
+				last_spawned = 3
 			else:
 				spawn_enemy(enemy)
 		4:
-			if right_available:
+			if right_available and last_spawned != 4:
 				right.spawn(enemy)
+				last_spawned = 4
 			else:
 				spawn_enemy(enemy)
+
+func _on_world_enemy_amount(amount: Variant) -> void:
+	enemy_amount = amount

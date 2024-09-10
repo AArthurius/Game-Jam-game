@@ -1,4 +1,7 @@
 extends Node2D
+
+const CANNON_BULLET = preload("res://Scenes/Entities/Projectiles/player/cannon_bullet.tscn")
+
 @onready var player: CharacterBody2D = $"../.."
 @onready var cannon_1: AnimatedSprite2D = $Autocannon1
 @onready var cannon_2: AnimatedSprite2D = $Autocannon2
@@ -30,21 +33,32 @@ func shoot():
 	if shoot_in_cd:
 		return
 	
-	var player_direction = (get_global_mouse_position() - global_position).normalized()
+	
 	if can_shoot_1 and !fired2:
 		cannon_1.play("shooting")
-		spawn_bullet.emit(barrel_1.global_position, player_direction, player.rotation)
+		shooting(barrel_1.global_position)
 		fired2 = true
 		can_shoot_1 = false
 		shoot_in_cd = true
 		timer.start()
 	elif can_shoot_2 and fired2:
 		cannon_2.play("shooting")
-		spawn_bullet.emit(barrel_2.global_position, player_direction, player.rotation)
+		shooting(barrel_2.global_position)
 		fired2 = false
 		can_shoot_2 = false
 		shoot_in_cd = true
 		timer.start()
+
+func shooting(barrel_pos: Vector2):
+	var player_direction = (get_global_mouse_position() - global_position).normalized()
+	var bullet = CANNON_BULLET.instantiate() as CharacterBody2D
+	bullet.spawn_pos = barrel_pos
+	bullet.spawn_rot = player.rotation
+	bullet.dir = player_direction
+	if get_tree().root.get_child(0).get_node("Environment") != null:
+		get_tree().root.get_child(0).get_node("Environment").get_node("Projectiles").add_child(bullet)
+	else:
+		get_tree().root.get_child(0).add_child(bullet)
 
 func _on_autocannon_1_animation_finished() -> void:
 	cannon_1.play("idle")

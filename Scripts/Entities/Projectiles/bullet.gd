@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 500
+@export var SPEED = 20000
 
 var dir: Vector2
 var spawn_pos: Vector2
@@ -11,7 +11,7 @@ func _ready() -> void:
 	global_rotation = spawn_rot
 
 func _physics_process(delta: float) -> void:
-	velocity = SPEED * dir
+	velocity = SPEED * dir * delta
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

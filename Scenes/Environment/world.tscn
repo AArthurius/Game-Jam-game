@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bltihrexc66te"]
+[gd_scene load_steps=13 format=4 uid="uid://bltihrexc66te"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/world.gd" id="1_2hxu4"]
 [ext_resource type="Texture2D" uid="uid://doxmx3qnmnieu" path="res://Assets/Debug/grid_orange_512x512.png" id="2_rhk88"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Environment/Spawner_manager.gd" id="3_rl27i"]
 [ext_resource type="PackedScene" uid="uid://difb52ow47vdi" path="res://Scenes/Environment/spawn_area.tscn" id="4_21wik"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
-[ext_resource type="PackedScene" uid="uid://c5021nfdkytl4" path="res://Scenes/ui.tscn" id="7_ye1wh"]
+[ext_resource type="PackedScene" uid="uid://dhqtmt1jrdgov" path="res://Scenes/Pickups/basic_shield_pickup.tscn" id="6_h0opc"]
+[ext_resource type="PackedScene" uid="uid://c5021nfdkytl4" path="res://Scenes/Control/ui.tscn" id="7_ye1wh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_subij"]
 texture = ExtResource("2_rhk88")
@@ -63,7 +64,7 @@ shape = SubResource("WorldBoundaryShape2D_f7p7e")
 script = ExtResource("3_rl27i")
 
 [node name="Time to spawn" type="Timer" parent="Environment/Spawner manager"]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [node name="top" parent="Environment/Spawner manager" instance=ExtResource("4_21wik")]
@@ -83,6 +84,11 @@ rotation = -1.5708
 
 [node name="Enemies" type="Node2D" parent="Environment"]
 
+[node name="Pickups" type="Node2D" parent="Environment"]
+
+[node name="Basic shield pickup" parent="Environment" instance=ExtResource("6_h0opc")]
+position = Vector2(60, 0)
+
 [node name="Player" parent="." instance=ExtResource("4_u2x8y")]
 unique_name_in_owner = true
 z_index = 5
@@ -97,6 +103,8 @@ limit_smoothed = true
 
 [node name="UI" parent="." instance=ExtResource("7_ye1wh")]
 
+[connection signal="enemy_amount" from="." to="Environment/Spawner manager" method="_on_world_enemy_amount"]
+[connection signal="enemy_amount" from="." to="UI/Game UI" method="_on_world_enemy_amount"]
 [connection signal="update_score" from="." to="UI/Game UI" method="_on_world_update_score"]
 [connection signal="timeout" from="Environment/Spawner manager/Time to spawn" to="Environment/Spawner manager" method="_on_timer_to_spawn_timeout"]
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]

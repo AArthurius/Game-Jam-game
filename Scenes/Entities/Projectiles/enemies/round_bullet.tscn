@@ -74,7 +74,6 @@ radius = 4.0
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("1_ob5oq")
-SPEED = 200
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708

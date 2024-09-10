@@ -26,6 +26,8 @@ func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
 func kill():
+	if dead:
+		return
 	dead = true
 	engine_effects.play("off")
 	hull.play("death")

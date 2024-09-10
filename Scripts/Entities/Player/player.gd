@@ -5,13 +5,15 @@ var broken = preload("res://Assets/Graphics/Ship/Hull/Hull - Broken.png")
 @onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var hull: Sprite2D = $Sprites/Hull
+@onready var shields_sprites: AnimatedSprite2D = $Sprites/Shields
 
-const MAX_SPEED = 300
+var max_speed = 300
 var acc = 350
-
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)
 var dead:bool = false
+
+var has_basic_shield:bool = false
 
 func _process(delta: float) -> void:
 	if dead:
@@ -24,6 +26,8 @@ func _process(delta: float) -> void:
 		engine.play("powering")
 	else:
 		engine.play("idle")
+	
+	shields()
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -35,8 +39,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		friction(delta)
 	
-	direction.x = clamp(direction.x, -MAX_SPEED, MAX_SPEED)
-	direction.y = clamp(direction.y, -MAX_SPEED, MAX_SPEED)
+	direction.x = clamp(direction.x, -max_speed, max_speed)
+	direction.y = clamp(direction.y, -max_speed, max_speed)
 	
 	velocity = direction 
 	move_and_slide()
@@ -67,6 +71,10 @@ func friction(delta):
 		direction.y = min(vel_y, 0)
 
 func kill():
+	if has_basic_shield:
+		has_basic_shield = false
+		shields_sprites.play("no shield")
+		return
 	dead = true
 	engine_effects.play("death")
 	hull.texture = broken
@@ -74,3 +82,7 @@ func kill():
 
 func dead_movement():
 	move_and_slide()
+
+func shields():
+	if has_basic_shield:
+		shields_sprites.play("basic shield")

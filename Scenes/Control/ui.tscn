@@ -1,7 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5021nfdkytl4"]
 
-[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_hfcsb"]
+[ext_resource type="Script" path="res://Scripts/Control/ui.gd" id="1_hfcsb"]
 [ext_resource type="FontFile" uid="uid://bphi51btog02m" path="res://Assets/fonts/PocketPixelRegular-6gdY.ttf" id="1_tvac7"]
+
+[sub_resource type="Animation" id="Animation_7tivd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Score Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_llbvs"]
 resource_name = "score pop"
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7tivd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Score Label:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bmlqu"]
@@ -63,7 +63,17 @@ offset_bottom = 28.0
 grow_horizontal = 2
 pivot_offset = Vector2(40, 8)
 theme_override_fonts/font = ExtResource("1_tvac7")
-text = "score"
+horizontal_alignment = 1
+
+[node name="Enemy number" type="Label" parent="Game UI"]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 28.0
+pivot_offset = Vector2(40, 8)
+theme_override_fonts/font = ExtResource("1_tvac7")
+text = "enemies:"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Game UI"]
