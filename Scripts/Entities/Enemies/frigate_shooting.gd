@@ -12,6 +12,9 @@ const WAVE = preload("res://Scenes/Entities/Projectiles/enemies/wave.tscn")
 var dead:bool = false
 var can_shoot:bool = false
 
+func _ready() -> void:
+	timer.wait_time = randf_range(1.2, 1.8)
+
 func _on_timer_timeout() -> void:
 	if dead:
 		return

@@ -1,13 +1,11 @@
 extends CharacterBody2D
 
-var broken = preload("res://Assets/Graphics/Ship/Hull/Hull - Broken.png")
-
 @onready var engine: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
 @onready var engine_effects: AnimatedSprite2D = $Sprites/BaseEngine/BaseEngineEffects
-@onready var hull: Sprite2D = $Sprites/Hull
 @onready var shields_sprites: AnimatedSprite2D = $Sprites/Shields
 @onready var weapons_manager: Node2D = $Weapons
-
+@onready var hull: AnimatedSprite2D = $Sprites/Hull
+@onready var explosion: AnimatedSprite2D = $Sprites/Explosion
 
 var max_speed = 300
 var acc = 750
@@ -16,6 +14,8 @@ var direction: Vector2 = Vector2(0, 0)
 var dead:bool = false
 
 var has_basic_shield:bool = false
+
+signal player_dead()
 
 func _process(delta: float) -> void:
 	if dead:
@@ -74,13 +74,18 @@ func friction(delta):
 		direction.y = min(vel_y, 0)
 
 func kill():
+	if dead:
+		return
 	if has_basic_shield:
 		has_basic_shield = false
 		shields_sprites.play("no shield")
 		return
+	player_dead.emit()
 	dead = true
 	engine_effects.play("death")
-	hull.texture = broken
+	hull.play("Broken")
+	explosion.play("death")
+	$Sounds/Death.play()
 	engine_effects.play("death")
 
 func dead_movement():

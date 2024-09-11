@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cihss0x5dmywk" path="res://Assets/Debug/grid_black_512x512.png" id="3_qomlx"]
 [ext_resource type="Script" path="res://Scripts/Environment/Spawner_manager.gd" id="3_rl27i"]
 [ext_resource type="Texture2D" uid="uid://chl88a7muvpdp" path="res://Assets/Graphics/Environment/Sprite-0001.png" id="3_tgdo8"]
-[ext_resource type="Texture2D" uid="uid://qmhul70ffan2" path="res://Assets/Back ground place hold.png" id="4_4ha2r"]
 [ext_resource type="PackedScene" uid="uid://difb52ow47vdi" path="res://Scenes/Environment/spawn_area.tscn" id="4_21wik"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
 [ext_resource type="PackedScene" uid="uid://c5021nfdkytl4" path="res://Scenes/Control/ui.tscn" id="7_ye1wh"]
@@ -19,8 +18,11 @@ texture = ExtResource("3_tgdo8")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m0ibb"]
+load_path = "res://.godot/imported/Back ground place hold.png-a05c1bfb477af7f6e6c3671845b9642d.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2i7qj"]
-texture = ExtResource("4_4ha2r")
+texture = SubResource("CompressedTexture2D_m0ibb")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 
@@ -38,7 +40,7 @@ script = ExtResource("1_2hxu4")
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Environment"]
-tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAAAAP7/AQAAAAAAAAD///7/AQAAAAAAAAD+//7/AQAAAAAAAAD9//7/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wAAAQAAAAAAAAD9////AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAACAP7/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAAEAP//AQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAAAAP7/AQAAAAAAAAD///7/AQAAAAAAAAD+//7/AQAAAAAAAAD9//7/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wAAAQAAAAAAAAD9////AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAACAP7/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_xra5y")
 
 [node name="Boundaries" type="StaticBody2D" parent="Environment" groups=["boundary"]]
@@ -110,6 +112,7 @@ limit_smoothed = true
 [connection signal="enemy_amount" from="." to="UI/Game UI" method="_on_world_enemy_amount"]
 [connection signal="update_score" from="." to="UI/Game UI" method="_on_world_update_score"]
 [connection signal="timeout" from="Environment/Spawner manager/Time to spawn" to="Environment/Spawner manager" method="_on_timer_to_spawn_timeout"]
+[connection signal="player_dead" from="Player" to="UI/Game UI" method="_on_player_player_dead"]
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
 
 [editable path="Player"]

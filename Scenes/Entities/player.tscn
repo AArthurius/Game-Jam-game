@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cnkat3xpqi7jp"]
+[gd_scene load_steps=80 format=3 uid="uid://cnkat3xpqi7jp"]
 
 [ext_resource type="Texture2D" uid="uid://bghcxfv35bkm4" path="res://Assets/Graphics/Ship/Hull/Hull - Full Health.png" id="1_0bigh"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/player.gd" id="1_67w6s"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b84tqb21s41vg" path="res://Assets/Graphics/Ship/Weapons/Main Ship - Auto Cannon 2-Sheet.png" id="6_ha0yc"]
 [ext_resource type="Texture2D" uid="uid://cy6wk1ycyjhhi" path="res://Assets/Graphics/Ship/Weapons/Weapons - Rockets.png" id="6_mhepg"]
 [ext_resource type="Texture2D" uid="uid://cyb5s8e7l76sw" path="res://Assets/Graphics/Ship/Shields/Shields - Round Shield.png" id="9_5c8o7"]
+[ext_resource type="Texture2D" uid="uid://cxsttrknqrc45" path="res://Assets/Graphics/Ship/Hull/Hull - Broken.png" id="11_8b33d"]
+[ext_resource type="Texture2D" uid="uid://bqs1nc5cwm4y2" path="res://Assets/Graphics/Enemies/Destruction/Nautolan Ship - Frigate.png" id="11_bge5m"]
+[ext_resource type="AudioStream" uid="uid://dam2byqds3hpe" path="res://Assets/Sound/Explosion/ship.mp3" id="15_oeg8q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gukxd"]
 
@@ -348,6 +351,107 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf48y"]
+atlas = ExtResource("11_8b33d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyssq"]
+atlas = ExtResource("11_bge5m")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mroo"]
+atlas = ExtResource("11_bge5m")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vijff"]
+atlas = ExtResource("11_bge5m")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_816xv"]
+atlas = ExtResource("11_bge5m")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itqws"]
+atlas = ExtResource("11_bge5m")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngihq"]
+atlas = ExtResource("1_0bigh")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4bvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf48y")
+}],
+"loop": true,
+"name": &"Broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyssq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mroo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vijff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_816xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itqws")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngihq")
+}],
+"loop": true,
+"name": &"Full health",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl82h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyssq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mroo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vijff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_816xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itqws")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2yfcu"]
 atlas = ExtResource("9_5c8o7")
 region = Rect2(0, 0, 64, 64)
@@ -527,13 +631,24 @@ sprite_frames = SubResource("SpriteFrames_rtd4v")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="Hull" type="Sprite2D" parent="Sprites"]
-texture = ExtResource("1_0bigh")
+[node name="Hull" type="AnimatedSprite2D" parent="Sprites"]
+sprite_frames = SubResource("SpriteFrames_g4bvj")
+animation = &"Death"
+autoplay = "Full health"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Sprites"]
+sprite_frames = SubResource("SpriteFrames_tl82h")
+autoplay = "default"
 
 [node name="Shields" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_o2g7i")
 animation = &"no shield"
 autoplay = "no shield"
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_oeg8q")
 
 [connection signal="animation_finished" from="Weapons/Autocannon/Autocannon1" to="Weapons/Autocannon" method="_on_autocannon_1_animation_finished"]
 [connection signal="animation_finished" from="Weapons/Autocannon/Autocannon2" to="Weapons/Autocannon" method="_on_autocannon_2_animation_finished"]

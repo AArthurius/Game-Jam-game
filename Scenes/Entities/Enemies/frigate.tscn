@@ -265,7 +265,7 @@ autoplay = "default"
 
 [node name="hull" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_lapk4")
-animation = &"shooting"
+animation = &"death"
 
 [node name="Bullet spawn" type="Marker2D" parent="."]
 position = Vector2(2, 0)
