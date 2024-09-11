@@ -1,8 +1,9 @@
 extends Node
 
 const BASIC_SHIELD_PICKUP = preload("res://Scenes/Pickups/basic_shield_pickup.tscn")
+const ROCKETS_PICKUP = preload("res://Scenes/Pickups/rockets_pickup.tscn")
 
-var pickups:Array = [BASIC_SHIELD_PICKUP]
+var pickups:Array = [BASIC_SHIELD_PICKUP, ROCKETS_PICKUP]
 
 func random_pickup():
 	if randi_range(0, 100) <= 20:

@@ -8,6 +8,7 @@ extends CharacterBody2D
 var dead:bool = false
 var player_direction: Vector2
 var direction: Vector2
+var targeted:bool = false
 
 #scout by default
 @export var acc = 500

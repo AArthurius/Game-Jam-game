@@ -10,7 +10,7 @@ var broken = preload("res://Assets/Graphics/Ship/Hull/Hull - Broken.png")
 
 
 var max_speed = 300
-var acc = 500
+var acc = 750
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)
 var dead:bool = false

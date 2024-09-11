@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://805qjvow71v3"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Projectiles/rocket.gd" id="1_fe3tf"]
+[ext_resource type="Texture2D" uid="uid://bmtdrbs0747w8" path="res://Assets/Graphics/Ship/Projectiles/Main ship weapon - Projectile - Rocket.png" id="2_qky3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by7hb"]
+atlas = ExtResource("2_qky3w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rshsx"]
+atlas = ExtResource("2_qky3w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riqwe"]
+atlas = ExtResource("2_qky3w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6hwg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by7hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rshsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_riqwe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xhd6r"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rnv50"]
+radius = 139.032
+
+[node name="Rocket" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 20
+script = ExtResource("1_fe3tf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 10
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_f6hwg")
+autoplay = "default"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xhd6r")
+
+[node name="Seeking area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Seeking area"]
+shape = SubResource("CircleShape2D_rnv50")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(42, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Seeking area" to="." method="_on_seeking_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

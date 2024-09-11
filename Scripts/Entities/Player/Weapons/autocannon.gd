@@ -30,7 +30,6 @@ func shoot():
 	if shoot_in_cd:
 		return
 	
-	
 	if can_shoot_1 and !fired2:
 		cannon_1.play("shooting")
 		shooting(barrel_1.global_position)

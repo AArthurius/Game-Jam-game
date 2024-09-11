@@ -224,7 +224,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Scout" type="CharacterBody2D"]
+[node name="Scout" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_bqopp")
