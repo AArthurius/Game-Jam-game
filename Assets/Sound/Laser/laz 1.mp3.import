@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbmxrlixpcba1"
+path="res://.godot/imported/laz 1.mp3-65303a42e282d22ab33cb995181a2c03.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Laser/laz 1.mp3"
+dest_files=["res://.godot/imported/laz 1.mp3-65303a42e282d22ab33cb995181a2c03.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

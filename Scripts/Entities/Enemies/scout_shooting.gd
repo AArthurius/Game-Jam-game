@@ -4,11 +4,15 @@ extends Node
 @onready var timer: Timer = $Timer
 @onready var hull: AnimatedSprite2D = $"../Sprites/hull"
 @onready var bullet_spawn: Marker2D = $"../Bullet spawn"
+@onready var laser: AudioStreamPlayer2D = $"../Sounds/Laser"
 
 const ROUND_BULLET = preload("res://Scenes/Entities/Projectiles/enemies/round_bullet.tscn")
 
 var dead:bool = false
 var can_shoot:bool = false
+
+func _ready() -> void:
+	timer.wait_time = randf_range(0.7, 1.3)
 
 func _on_timer_timeout() -> void:
 	if dead:
@@ -22,10 +26,10 @@ func _process(delta: float) -> void:
 		dead = true
 		return
 	
-	
 	if hull.animation == "shooting":
 		if hull.get_frame() == 3:
 			shoot()
+			laser.play()
 			can_shoot = false
 
 func shoot():

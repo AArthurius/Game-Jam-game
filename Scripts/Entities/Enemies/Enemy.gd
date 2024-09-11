@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var engine_effects: AnimatedSprite2D = $Sprites/engineEffects
 @onready var hull: AnimatedSprite2D = $Sprites/hull
 @onready var random_pickup: Node = $"Random Pickup"
+@onready var death: AudioStreamPlayer2D = $Sounds/Death
+
 
 var dead:bool = false
 var player_direction: Vector2
@@ -36,6 +38,7 @@ func kill():
 	dead = true
 	engine_effects.play("off")
 	hull.play("death")
+	death.play()
 	collision_layer = 0
 	collision_mask = 0
 	get_tree().root.get_child(0).add_score(value)

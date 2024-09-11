@@ -4,6 +4,8 @@ extends Node
 @onready var timer: Timer = $Timer
 @onready var hull: AnimatedSprite2D = $"../Sprites/hull"
 @onready var bullet_spawn: Marker2D = $"../Bullet spawn"
+@onready var laser: AudioStreamPlayer2D = $"../Sounds/Laser"
+
 
 const WAVE = preload("res://Scenes/Entities/Projectiles/enemies/wave.tscn")
 
@@ -25,6 +27,7 @@ func _process(delta: float) -> void:
 	if hull.animation == "shooting":
 		if hull.get_frame() == 5:
 			shoot()
+			laser.play()
 			can_shoot = false
 
 func shoot():
