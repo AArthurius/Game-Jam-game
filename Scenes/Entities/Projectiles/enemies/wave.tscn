@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccpfmyv4n0qth"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Projectiles/bullet.gd" id="1_g7j4b"]
+[ext_resource type="Texture2D" uid="uid://dkc4etqfa0rt5" path="res://Assets/Graphics/Enemies/Weapon Effects - Projectiles/Nautolan - Wave.png" id="2_h1sh7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtamr"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyhxn"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek74l"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ewp"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u0kt"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5tta"]
+atlas = ExtResource("2_h1sh7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6iq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtamr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyhxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek74l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ewp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u0kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5tta")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_21ryb"]
+radius = 4.0
+height = 36.0
+
+[node name="Wave" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 17
+script = ExtResource("1_g7j4b")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 10
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_t6iq8")
+autoplay = "default"
+frame_progress = 0.0443497
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_21ryb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

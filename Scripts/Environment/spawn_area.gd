@@ -7,6 +7,7 @@ extends Area2D
 @onready var marker_2d_6: Marker2D = $Marker2D6
 
 const SCOUT = preload("res://Scenes/Entities/Enemies/scout.tscn")
+const FRIGATE = preload("res://Scenes/Entities/Enemies/frigate.tscn")
 
 func spawn(enemy):
 	var chosen_marker:int = randi_range(1, 5)
@@ -23,9 +24,13 @@ func spawn(enemy):
 			position = marker_2d_1.global_position
 		5:
 			position = marker_2d_1.global_position
-
+	
 	match enemy:
 		"scout":
 			var scout = SCOUT.instantiate() as CharacterBody2D
 			scout.position = position
 			get_tree().root.get_child(0).get_node("Environment").get_node("Enemies").add_child(scout)
+		"frigate":
+			var frigate = FRIGATE.instantiate() as CharacterBody2D
+			frigate.position = position
+			get_tree().root.get_child(0).get_node("Environment").get_node("Enemies").add_child(frigate)

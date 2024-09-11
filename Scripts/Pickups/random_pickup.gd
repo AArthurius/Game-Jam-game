@@ -1,12 +1,11 @@
 extends Node
 
 const BASIC_SHIELD_PICKUP = preload("res://Scenes/Pickups/basic_shield_pickup.tscn")
-const FRONT_SHIELD_PICKUP = preload("res://Scenes/Pickups/front_shield_pickup.tscn")
 
-var pickups:Array = [BASIC_SHIELD_PICKUP, FRONT_SHIELD_PICKUP]
+var pickups:Array = [BASIC_SHIELD_PICKUP]
 
 func random_pickup():
-	if randi_range(0, 100) <= 101:
+	if randi_range(0, 100) <= 20:
 		var pickup = randomize_pickup().instantiate()
 		pickup.position = $"..".global_position
 		get_tree().root.get_child(0).get_node("Environment").get_node("Pickups").add_child(pickup)

@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cisxmvyqmbrjb"]
+[gd_scene load_steps=6 format=3 uid="uid://cisxmvyqmbrjb"]
 
 [ext_resource type="Script" path="res://Scripts/Control/menu.gd" id="1_vvm3x"]
 [ext_resource type="FontFile" uid="uid://bphi51btog02m" path="res://Assets/fonts/PocketPixelRegular-6gdY.ttf" id="2_m66mq"]
-[ext_resource type="PackedScene" uid="uid://dhqtmt1jrdgov" path="res://Scenes/Pickups/basic_shield_pickup.tscn" id="3_78obh"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="3_ev4it"]
-[ext_resource type="PackedScene" uid="uid://wpc3012ewup5" path="res://Scenes/Pickups/front_shield_pickup.tscn" id="4_egpyn"]
+[ext_resource type="PackedScene" uid="uid://bepi6iakud0ay" path="res://Scenes/Pickups/rockets_pickup.tscn" id="4_mq06c"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_use5e"]
 
@@ -70,12 +69,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_m66mq")
 text = "Quit"
 
-[node name="Basic shield pickup" parent="VBoxContainer" instance=ExtResource("3_78obh")]
-position = Vector2(159, 51)
-
-[node name="Front_Shield_pickup" parent="VBoxContainer" instance=ExtResource("4_egpyn")]
-position = Vector2(311, 50)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -99,6 +92,9 @@ shape = SubResource("WorldBoundaryShape2D_use5e")
 
 [node name="Player" parent="." instance=ExtResource("3_ev4it")]
 position = Vector2(240, 135)
+
+[node name="Basic shield pickup" parent="." instance=ExtResource("4_mq06c")]
+position = Vector2(310, 135)
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

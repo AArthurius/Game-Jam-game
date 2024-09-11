@@ -7,6 +7,7 @@ var spawn_pos: Vector2
 var spawn_rot: float
 
 func _ready() -> void:
+	
 	global_position = spawn_pos
 	global_rotation = spawn_rot
 
@@ -19,10 +20,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.kill()
 		queue_free()
 	if body.is_in_group("boundary"):
-		queue_free()
-	if body.is_in_group("front shield"):
-		queue_free()
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("boundary"):
 		queue_free()

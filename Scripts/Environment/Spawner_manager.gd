@@ -13,11 +13,12 @@ var left_available:bool = true
 var right_available:bool = true
 var enemy_amount:int = 0
 var last_spawned:int = 1
+var difficulty_level:int = 0
 
 func _process(delta: float) -> void:
 	player_position()
 	if enemy_amount < 4:
-		spawn_enemy("scout")
+		spawn_enemy(choose_random_enemy())
 
 func player_position():
 	if player in top.get_overlapping_bodies():
@@ -38,7 +39,7 @@ func player_position():
 		right_available = true
 
 func _on_timer_to_spawn_timeout() -> void:
-	spawn_enemy("scout")
+	spawn_enemy(choose_random_enemy())
 
 func spawn_enemy(enemy):
 	var where_spawn:int = randi_range(1, 4)
@@ -71,3 +72,9 @@ func spawn_enemy(enemy):
 
 func _on_world_enemy_amount(amount: Variant) -> void:
 	enemy_amount = amount
+
+func choose_random_enemy():
+	var enemies: Array = ["scout", "frigate"]
+	var number = randi_range(0, enemies.size() - 2 + difficulty_level)
+	number = clamp(number, 0, 1)
+	return enemies[number]

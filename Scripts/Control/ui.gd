@@ -3,8 +3,6 @@ extends Control
 @onready var enemy_number: Label = $"Enemy number"
 @onready var score_label: Label = $"Score Label"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var front_shield_timer: Timer = $"Front shield timer"
-@onready var front_shield_pb: TextureProgressBar = $"Front shield pb"
 
 var total_score:int = 0
 var enemies:int = 0
@@ -22,17 +20,3 @@ func _on_world_update_score(amount: Variant) -> void:
 
 func _on_world_enemy_amount(amount: Variant) -> void:
 	enemies = amount
-
-func _on_player_front_shield_timer_ui() -> void:
-	front_shield_pb.visible = true
-	front_shield_timer.start()
-	front_shield_pb.value = 0
-	tween_progress()
-
-func _on_front_shield_timer_timeout() -> void:
-	front_shield_pb.visible = false
-
-func tween_progress():
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(front_shield_pb, "value",100 ,10)
