@@ -12,15 +12,17 @@ var acc = 750
 var input_dir: Vector2 = Vector2(0, 0)
 var direction: Vector2 = Vector2(0, 0)
 var dead:bool = false
-
+var rockets:int = 0
 var has_basic_shield:bool = false
 
 signal player_dead()
+signal rocket_ammo(ammo)
 
 func _process(delta: float) -> void:
 	if dead:
 		return
 	
+	rocket_ammo.emit(rockets)
 	
 	input_dir = Input.get_vector("left","right","up", "down")
 	look_at(get_global_mouse_position())
@@ -102,6 +104,7 @@ func pickup(pickup: String, type:String):
 			"autocannon":
 				weapons_manager.weapon = 1
 			"rockets":
+				$Weapons/Rockets.rocket_ammo += 12
 				weapons_manager.weapon = 2
 
 func shields_anim():
@@ -111,3 +114,7 @@ func shields_anim():
 func disable_shields():
 	has_basic_shield = false
 	shields_sprites.play("no shield")
+
+
+func _on_rockets_out_of_ammo() -> void:
+	weapons_manager.weapon = 1

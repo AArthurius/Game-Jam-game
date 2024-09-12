@@ -6,7 +6,6 @@ extends Node
 @onready var bullet_spawn: Marker2D = $"../Bullet spawn"
 @onready var laser: AudioStreamPlayer2D = $"../Sounds/Laser"
 
-
 const WAVE = preload("res://Scenes/Entities/Projectiles/enemies/wave.tscn")
 
 var dead:bool = false

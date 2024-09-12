@@ -74,7 +74,7 @@ func _on_world_enemy_amount(amount: Variant) -> void:
 	enemy_amount = amount
 
 func choose_random_enemy():
-	var enemies: Array = ["scout", "frigate"]
-	var number = randi_range(0, enemies.size() - 2 + difficulty_level)
-	number = clamp(number, 0, 1)
+	var enemies: Array = ["scout", "frigate", "fighter"]
+	var number = randi_range(0, enemies.size() - 3 + difficulty_level)
+	number = clamp(number, 0, 2)
 	return enemies[number]

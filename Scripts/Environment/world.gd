@@ -17,15 +17,17 @@ func _process(delta: float) -> void:
 
 func difficulty():
 	if score > 20 and score < 40:
-		spawner_manager.difficulty_level = 1
 		time_to_spawn.wait_time = 4
 	if score > 40 and score < 60:
 		time_to_spawn.wait_time = 3
-		spawner_manager.difficulty_level = 2
+		spawner_manager.difficulty_level = 1
 	if score > 60 and score < 100:
 		time_to_spawn.wait_time = 2
-		spawner_manager.difficulty_level = 3 
+		spawner_manager.difficulty_level = 2 
 	if score > 100:
+		time_to_spawn.wait_time = 1
+		spawner_manager.difficulty_level = 3
+	if score > 200:
 		time_to_spawn.wait_time = 1
 		spawner_manager.difficulty_level = 4
 

@@ -66,6 +66,24 @@ theme_override_fonts/font = ExtResource("1_tvac7")
 text = "score: 0"
 horizontal_alignment = 1
 
+[node name="Ammo Label" type="Label" parent="Game UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(40, 8)
+theme_override_fonts/font = ExtResource("1_tvac7")
+text = "rockets"
+horizontal_alignment = 1
+
 [node name="Enemy number" type="Label" parent="Game UI"]
 layout_mode = 1
 offset_left = 8.0

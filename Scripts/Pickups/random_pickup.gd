@@ -6,7 +6,7 @@ const ROCKETS_PICKUP = preload("res://Scenes/Pickups/rockets_pickup.tscn")
 var pickups:Array = [BASIC_SHIELD_PICKUP, ROCKETS_PICKUP]
 
 func random_pickup():
-	if randi_range(0, 100) <= 20:
+	if randi_range(0, 100) <= 30:
 		var pickup = randomize_pickup().instantiate()
 		pickup.position = $"..".global_position
 		get_tree().root.get_child(0).get_node("Environment").get_node("Pickups").add_child(pickup)

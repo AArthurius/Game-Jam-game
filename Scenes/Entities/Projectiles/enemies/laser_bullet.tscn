@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2cj56yeiriue"]
+
+[ext_resource type="Texture2D" uid="uid://80bl4syjoljg" path="res://Assets/Graphics/Enemies/Weapon Effects - Projectiles/Nautolan - Bullet.png" id="1_ir7rh"]
+[ext_resource type="Script" path="res://Scripts/Entities/Projectiles/bullet.gd" id="1_nhsi8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0muv1"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(0, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh252"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(9, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2n6r"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(18, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvwol"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(27, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvphc"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(36, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14v0a"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(45, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s3jl"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(54, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grypx"]
+atlas = ExtResource("1_ir7rh")
+region = Rect2(63, 0, 9, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ck813"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0muv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh252")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2n6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvwol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvphc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14v0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s3jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grypx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xcxn0"]
+radius = 3.0
+height = 14.0
+
+[node name="Laser bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 17
+script = ExtResource("1_nhsi8")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_ck813")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xcxn0")

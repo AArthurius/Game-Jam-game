@@ -18,6 +18,9 @@ var launched_5:bool = false
 var launched_6:bool = false
 
 var shooting:bool = false
+var rocket_ammo:int
+
+signal out_of_ammo()
 
 const ROCKET = preload("res://Scenes/Entities/Projectiles/player/rocket.tscn")
 
@@ -25,25 +28,36 @@ func _process(delta: float) -> void:
 	if player.dead:
 		return
 	
+	if rocket_ammo <= 0:
+		out_of_ammo.emit()
+	
+	player.rockets = rocket_ammo
+	
 	if shooting:
 		if rockets_sprites.get_frame() == 2 and !launched_1:
 			launched_1 = true
 			shoot(marker_1.global_position)
+			rocket_ammo -= 1
 		if rockets_sprites.get_frame() == 4 and !launched_2:
 			launched_2 = true
 			shoot(marker_2.global_position)
+			rocket_ammo -= 1
 		if rockets_sprites.get_frame() == 6 and !launched_3:
 			launched_3 = true
 			shoot(marker_3.global_position)
+			rocket_ammo -= 1
 		if rockets_sprites.get_frame() == 8 and !launched_4:
 			launched_4 = true
 			shoot(marker_4.global_position)
+			rocket_ammo -= 1
 		if rockets_sprites.get_frame() == 10 and !launched_5:
 			launched_5 = true
 			shoot(marker_5.global_position)
+			rocket_ammo -= 1
 		if rockets_sprites.get_frame() == 12 and !launched_6:
 			launched_6 = true
 			shoot(marker_6.global_position)
+			rocket_ammo -= 1
 			timer.start()
 
 func shoot(position: Vector2):

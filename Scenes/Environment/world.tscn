@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bltihrexc66te"]
+[gd_scene load_steps=15 format=4 uid="uid://bltihrexc66te"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/world.gd" id="1_2hxu4"]
 [ext_resource type="Texture2D" uid="uid://cihss0x5dmywk" path="res://Assets/Debug/grid_black_512x512.png" id="3_qomlx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://difb52ow47vdi" path="res://Scenes/Environment/spawn_area.tscn" id="4_21wik"]
 [ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="4_u2x8y"]
 [ext_resource type="PackedScene" uid="uid://c5021nfdkytl4" path="res://Scenes/Control/ui.tscn" id="7_ye1wh"]
+[ext_resource type="PackedScene" uid="uid://dhqtmt1jrdgov" path="res://Scenes/Pickups/basic_shield_pickup.tscn" id="8_y1xrk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ftyjg"]
 texture = ExtResource("3_qomlx")
@@ -19,7 +20,6 @@ texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m0ibb"]
-load_path = "res://.godot/imported/Back ground place hold.png-a05c1bfb477af7f6e6c3671845b9642d.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2i7qj"]
 texture = SubResource("CompressedTexture2D_m0ibb")
@@ -108,11 +108,15 @@ limit_smoothed = true
 
 [node name="UI" parent="." instance=ExtResource("7_ye1wh")]
 
+[node name="Basic shield pickup" parent="." instance=ExtResource("8_y1xrk")]
+visible = false
+
 [connection signal="enemy_amount" from="." to="Environment/Spawner manager" method="_on_world_enemy_amount"]
 [connection signal="enemy_amount" from="." to="UI/Game UI" method="_on_world_enemy_amount"]
 [connection signal="update_score" from="." to="UI/Game UI" method="_on_world_update_score"]
 [connection signal="timeout" from="Environment/Spawner manager/Time to spawn" to="Environment/Spawner manager" method="_on_timer_to_spawn_timeout"]
 [connection signal="player_dead" from="Player" to="UI/Game UI" method="_on_player_player_dead"]
+[connection signal="rocket_ammo" from="Player" to="UI/Game UI" method="_on_player_rocket_ammo"]
 [connection signal="spawn_bullet" from="Player/Weapons/Autocannon" to="." method="_on_autocannon_spawn_bullet"]
 
 [editable path="Player"]

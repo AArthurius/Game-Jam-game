@@ -8,6 +8,7 @@ extends Area2D
 
 const SCOUT = preload("res://Scenes/Entities/Enemies/scout.tscn")
 const FRIGATE = preload("res://Scenes/Entities/Enemies/frigate.tscn")
+const FIGHTER = preload("res://Scenes/Entities/Enemies/fighter.tscn")
 
 func spawn(enemy):
 	var chosen_marker:int = randi_range(1, 5)
@@ -34,3 +35,7 @@ func spawn(enemy):
 			var frigate = FRIGATE.instantiate() as CharacterBody2D
 			frigate.position = position
 			get_tree().root.get_child(0).get_node("Environment").get_node("Enemies").add_child(frigate)
+		"fighter":
+			var figther = FIGHTER.instantiate() as CharacterBody2D
+			figther.position = position
+			get_tree().root.get_child(0).get_node("Environment").get_node("Enemies").add_child(figther)

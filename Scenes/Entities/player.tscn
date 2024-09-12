@@ -650,8 +650,10 @@ autoplay = "no shield"
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("15_oeg8q")
 
+[connection signal="rocket_ammo" from="." to="Weapons/Rockets" method="_on_player_rocket_ammo"]
 [connection signal="animation_finished" from="Weapons/Autocannon/Autocannon1" to="Weapons/Autocannon" method="_on_autocannon_1_animation_finished"]
 [connection signal="animation_finished" from="Weapons/Autocannon/Autocannon2" to="Weapons/Autocannon" method="_on_autocannon_2_animation_finished"]
 [connection signal="timeout" from="Weapons/Autocannon/Timer" to="Weapons/Autocannon" method="_on_timer_timeout"]
+[connection signal="out_of_ammo" from="Weapons/Rockets" to="." method="_on_rockets_out_of_ammo"]
 [connection signal="timeout" from="Weapons/Rockets/Timer" to="Weapons" method="_on_timer_timeout"]
 [connection signal="timeout" from="Weapons/Rockets/Timer" to="Weapons/Rockets" method="_on_timer_timeout"]

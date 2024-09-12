@@ -47,6 +47,3 @@ func _on_seeking_area_body_entered(body: Node2D) -> void:
 		body.targeted = true
 		has_target = true
 		target = body
-
-func _on_timer_timeout() -> void:
-	queue_free()

@@ -12,7 +12,7 @@ var dead:bool = false
 var can_shoot:bool = false
 
 func _ready() -> void:
-	timer.wait_time = randf_range(0.7, 1.3)
+	timer.wait_time = randf_range(1.7, 2.3)
 
 func _on_timer_timeout() -> void:
 	if dead:
