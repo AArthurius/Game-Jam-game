@@ -118,3 +118,7 @@ func disable_shields():
 
 func _on_rockets_out_of_ammo() -> void:
 	weapons_manager.weapon = 1
+
+func _on_death_finished() -> void:
+	var sfx_index= AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(sfx_index, true)

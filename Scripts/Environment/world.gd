@@ -10,6 +10,10 @@ var enemy_number:int = 0
 signal update_score(amount)
 signal enemy_amount(amount)
 
+func _ready() -> void:
+	var sfx_index= AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(sfx_index, false)
+
 func _process(delta: float) -> void:
 	enemy_number = enemies.get_children().size()
 	enemy_amount.emit(enemy_number)

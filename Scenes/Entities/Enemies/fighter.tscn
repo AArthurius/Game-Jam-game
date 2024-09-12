@@ -286,9 +286,11 @@ position = Vector2(11, 8)
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("6_i2vpm")
+bus = &"SFX"
 
 [node name="Laser" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("7_jgpl0")
+bus = &"SFX"
 
 [connection signal="timeout" from="Fighter shooting/Timer" to="Fighter shooting" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Sprites/hull" to="Fighter shooting" method="_on_hull_animation_finished"]
