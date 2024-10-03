@@ -32,6 +32,7 @@ func shoot():
 	
 	if can_shoot_1 and !fired2:
 		cannon_1.play("shooting")
+		$"../../Sounds/shoot".play()
 		shooting(barrel_1.global_position)
 		fired2 = true
 		can_shoot_1 = false
@@ -39,6 +40,7 @@ func shoot():
 		timer.start()
 	elif can_shoot_2 and fired2:
 		cannon_2.play("shooting")
+		$"../../Sounds/shoot".play()
 		shooting(barrel_2.global_position)
 		fired2 = false
 		can_shoot_2 = false

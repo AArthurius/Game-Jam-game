@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=4 uid="uid://qwjiim05eqrc"]
+
+[ext_resource type="Script" path="res://Scripts/Control/credits.gd" id="1_mipx1"]
+[ext_resource type="FontFile" uid="uid://bphi51btog02m" path="res://Assets/fonts/PocketPixelRegular-6gdY.ttf" id="2_qiyuq"]
+[ext_resource type="Texture2D" uid="uid://duf54o10uytb4" path="res://Assets/Graphics/Environment/Tile 1.png" id="3_dom1x"]
+[ext_resource type="Texture2D" uid="uid://cihss0x5dmywk" path="res://Assets/Debug/grid_black_512x512.png" id="4_85at6"]
+[ext_resource type="Texture2D" uid="uid://b72o0cs033taa" path="res://Assets/Graphics/Environment/Tiles 2.png" id="5_xldx5"]
+[ext_resource type="Texture2D" uid="uid://724616sgqqko" path="res://Assets/Graphics/Environment/Tiles 3.png" id="6_7x12i"]
+[ext_resource type="Texture2D" uid="uid://ouqqhxgmcdym" path="res://Assets/Graphics/Environment/Tiles 4.png" id="7_g37nq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6ha1"]
+texture = ExtResource("3_dom1x")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ax16"]
+texture = ExtResource("4_85at6")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xa227"]
+texture = ExtResource("5_xldx5")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rqck7"]
+texture = ExtResource("6_7x12i")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rveie"]
+texture = ExtResource("7_g37nq")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7b483"]
+tile_size = Vector2i(512, 512)
+sources/1 = SubResource("TileSetAtlasSource_7ax16")
+sources/0 = SubResource("TileSetAtlasSource_s6ha1")
+sources/2 = SubResource("TileSetAtlasSource_xa227")
+sources/3 = SubResource("TileSetAtlasSource_rqck7")
+sources/4 = SubResource("TileSetAtlasSource_rveie")
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mipx1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//BAAAAAAAAAAAAP7/AAAAAAAAAAD///7/BAAAAAAAAAD+//7/AAAAAAAAAAD9//7/BAAAAAAAAAD8//7/AAAAAAAAAAD8////BAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEABAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAABAAAAAAAAAD9////AAAAAAAAAAD+////AgAAAAAAAAD+/wAAAAAAAAAAAAD+/wEABAAAAAAAAAD//wEAAAAAAAAAAAD//wAABAAAAAAAAAD/////AAAAAAAAAAABAP7/BAAAAAAAAAABAP//AAAAAAAAAAABAAAABAAAAAAAAAABAAEAAAAAAAAAAAACAAEABAAAAAAAAAACAAAAAwAAAAAAAAACAP//BAAAAAAAAAACAP7/AAAAAAAAAAADAP7/BAAAAAAAAAADAP//AAAAAAAAAAADAAAABAAAAAAAAAADAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_7b483")
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 228.0
+offset_right = 97.0
+offset_bottom = 254.0
+theme_override_fonts/font = ExtResource("2_qiyuq")
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 144.0
+offset_top = 7.0
+offset_right = 336.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_qiyuq")
+text = "Credits for the free assets:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -109.0
+offset_right = 191.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_qiyuq")
+text = "Ship, enemies, weapons and projectiles: 
+Foozle
+https://foozlecc.itch.io"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

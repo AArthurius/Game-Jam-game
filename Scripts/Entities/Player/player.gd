@@ -19,6 +19,7 @@ signal player_dead()
 signal rocket_ammo(ammo)
 
 func _process(delta: float) -> void:
+	
 	if dead:
 		return
 	

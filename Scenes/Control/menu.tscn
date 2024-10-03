@@ -1,10 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://cisxmvyqmbrjb"]
+[gd_scene load_steps=14 format=4 uid="uid://cisxmvyqmbrjb"]
 
 [ext_resource type="Script" path="res://Scripts/Control/menu.gd" id="1_vvm3x"]
 [ext_resource type="FontFile" uid="uid://bphi51btog02m" path="res://Assets/fonts/PocketPixelRegular-6gdY.ttf" id="2_m66mq"]
-[ext_resource type="PackedScene" uid="uid://cnkat3xpqi7jp" path="res://Scenes/Entities/player.tscn" id="3_ev4it"]
+[ext_resource type="Texture2D" uid="uid://duf54o10uytb4" path="res://Assets/Graphics/Environment/Tile 1.png" id="4_wpwso"]
+[ext_resource type="Texture2D" uid="uid://cihss0x5dmywk" path="res://Assets/Debug/grid_black_512x512.png" id="5_00nv3"]
+[ext_resource type="Texture2D" uid="uid://b72o0cs033taa" path="res://Assets/Graphics/Environment/Tiles 2.png" id="6_ilvmr"]
+[ext_resource type="Texture2D" uid="uid://724616sgqqko" path="res://Assets/Graphics/Environment/Tiles 3.png" id="7_snfdy"]
+[ext_resource type="Texture2D" uid="uid://ouqqhxgmcdym" path="res://Assets/Graphics/Environment/Tiles 4.png" id="8_0s50f"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_use5e"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1288"]
+texture = ExtResource("4_wpwso")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7b1vk"]
+texture = ExtResource("5_00nv3")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npcrr"]
+texture = ExtResource("6_ilvmr")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_722vf"]
+texture = ExtResource("7_snfdy")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mfyyr"]
+texture = ExtResource("8_0s50f")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tvrvw"]
+tile_size = Vector2i(512, 512)
+sources/1 = SubResource("TileSetAtlasSource_7b1vk")
+sources/0 = SubResource("TileSetAtlasSource_e1288")
+sources/2 = SubResource("TileSetAtlasSource_npcrr")
+sources/3 = SubResource("TileSetAtlasSource_722vf")
+sources/4 = SubResource("TileSetAtlasSource_mfyyr")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -15,6 +50,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvm3x")
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//BAAAAAAAAAAAAP7/AAAAAAAAAAD///7/BAAAAAAAAAD+//7/AAAAAAAAAAD9//7/BAAAAAAAAAD8////BAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEABAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAABAAAAAAAAAD9////AAAAAAAAAAD+////AgAAAAAAAAD+/wAAAAAAAAAAAAD+/wEABAAAAAAAAAD//wEAAAAAAAAAAAD//wAABAAAAAAAAAD/////AAAAAAAAAAABAP7/BAAAAAAAAAABAP//AAAAAAAAAAABAAAABAAAAAAAAAABAAEAAAAAAAAAAAACAAEABAAAAAAAAAACAAAAAwAAAAAAAAACAP//BAAAAAAAAAACAP7/AAAAAAAAAAADAP7/BAAAAAAAAAADAP//AAAAAAAAAAADAAAABAAAAAAAAAADAAEAAAAAAAAAAAD8//7/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_tvrvw")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 2
+offset_left = 128.0
+offset_top = 18.0
+offset_right = 352.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_m66mq")
+text = "Ship Blaster"
+horizontal_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -23,9 +72,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -112.0
-offset_top = -108.0
+offset_top = 46.0
 offset_right = 112.0
-offset_bottom = -39.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -63,34 +112,16 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_m66mq")
 text = "Start"
 
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m66mq")
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_m66mq")
 text = "Quit"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(240, -64)
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_use5e")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(544, 128)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_use5e")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-64, 120)
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_use5e")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(240, 336)
-shape = SubResource("WorldBoundaryShape2D_use5e")
-
-[node name="Player" parent="." instance=ExtResource("3_ev4it")]
-position = Vector2(240, 135)
-
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjv8ws44uw7v5"
-path="res://.godot/imported/progress bar highlight.png-f90b21788d9ff5134df1a02627321d26.ctex"
+uid="uid://b43exjye448eh"
+path="res://.godot/imported/Cursor.png-a311bc072ee5dc38d7f52d76fe3ea236.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/progress bar highlight.png"
-dest_files=["res://.godot/imported/progress bar highlight.png-f90b21788d9ff5134df1a02627321d26.ctex"]
+source_file="res://Assets/Graphics/Cursor.png"
+dest_files=["res://.godot/imported/Cursor.png-a311bc072ee5dc38d7f52d76fe3ea236.ctex"]
 
 [params]
 
